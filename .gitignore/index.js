@@ -1,6 +1,7 @@
 
 const Discord = require("discord.js")
 const fs = require('fs')
+const token = process.env.token
 const client = new Discord.Client()
  
 let prefix = "!"
@@ -12,7 +13,7 @@ client.on('ready', function ( ){
     client.user.setActivity('!help pour mes infos <3', {type: 'PLAYING'})
 })
 
-client.login('TOKEN')
+client.login('token')
  
 client.on("message", function (message) {
     if (!message.guild) return
