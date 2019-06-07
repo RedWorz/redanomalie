@@ -13,7 +13,7 @@ client.on('ready', function ( ){
     client.user.setActivity('!help pour mes infos <3', {type: 'PLAYING'})
 })
 
-client.login('token')
+client.login(token)
  
 client.on("message", function (message) {
     if (!message.guild) return
