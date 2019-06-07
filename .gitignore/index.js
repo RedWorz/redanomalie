@@ -50,11 +50,7 @@ client.on("message", function (message) {
     }
 })
 
-// Message de Bienvenue !
-
-client.on('guildMemberAdd', member =>{
-    member.guild.channels.get(586564777564831764).send('Bienvenue' + member.user + 'sur la RedAnomalie si tu veut toutes informations sur les pack de bot écrivez "!bots" dans infos :D');
-})
+// Message de Bienvenue ! (temporairement désactiver)
 
 // Clear + Mute
 
