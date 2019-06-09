@@ -155,5 +155,11 @@ client.on('message', function (message) {
        message.guild.ban(member, {days: 7})
        message.channel.send('**' + member.user.username + '** a été banni :white_check_mark:')
     }
+ 
 })
+client.on('guildMemberAdd', function (member) {
+    let embed = new Discord.RichEmbed()
+    member.addRole('587345387912953867')
+})
+
 
