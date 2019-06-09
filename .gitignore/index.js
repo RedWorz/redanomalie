@@ -1,7 +1,6 @@
 
 const Discord = require("discord.js")
 const fs = require('fs')
-const token = process.env.token
 const client = new Discord.Client()
  
 let prefix = "!"
@@ -13,7 +12,7 @@ client.on('ready', function ( ){
     client.user.setActivity('!help pour mes infos <3', {type: 'PLAYING'})
 })
 
-client.login(token)
+client.login('NTg2NjE1NDc3ODAwMDA5NzQ4.XPqmeg.u0zqmlfBSzxdX896uitYBNBrXkU')
  
 client.on("message", function (message) {
     if (!message.guild) return
@@ -50,7 +49,11 @@ client.on("message", function (message) {
     }
 })
 
-// Message de Bienvenue ! (temporairement désactiver)
+// Message de Bienvenue !
+
+client.on('guildMemberAdd', member =>{
+    member.guild.channels.get(586564777564831764).send('Bienvenue' + member.user + 'sur la RedAnomalie si tu veut toutes informations sur les pack de bot écrivez "!bots" dans infos :D');
+})
 
 // Clear + Mute
 
@@ -153,3 +156,26 @@ client.on('message', function (message) {
        message.channel.send('**' + member.user.username + '** a été banni :white_check_mark:')
     }
 })
+
+// Musique
+
+const ytdl = require('ytdl-core');
+
+module.exports.run = async (bot, message, args) => {
+    if (!message.member.voiceChannel) 
+        return message.channel.send('Connectez vous a un salon vocal pour éxecuter cette commande :x');
+    if (message.guild.me.voiceChannel) 
+        return message.channel.send('Le bot et dèja connecter a un autres salon !');
+    if (!args[0]) 
+        return message.channel.send('Merci de mettre un lien youtube après la commande');
+
+    const validate = await ytdl.validateURL(args[0]);
+    if (!validate) return message.channel.send ("Votre url n'est pas valide :x")
+
+    const info = await ytdl.getInfo(args[0]);
+    const connection = await message.member.voiceChannel.join();
+    const dispatcher = await connection.playStream(ytdl(args[0], { filter: 'audioonly'})
+    );
+    message.channel.send(`Musique ajoutée : ${info.title}`)
+};
+
