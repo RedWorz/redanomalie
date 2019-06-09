@@ -179,3 +179,6 @@ module.exports.run = async (bot, message, args) => {
     message.channel.send(`Musique ajoutée : ${info.title}`)
 };
 
+module.exports.help = {
+    name:'play'
+};
